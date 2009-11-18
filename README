@@ -2,6 +2,9 @@ Apache2::Filter::CSS::LESSp is Copyright (C) 2009, Michael Schout.
 
 WHAT IS THIS?
 
+This module provides on demand conversion of CSS LESS files to CSS using
+CSS::LESSp under mod_perl2.
+
 INSTALLATION
 
 To install this module type the following:
@@ -17,6 +20,7 @@ This module requires these other CPAN modules:
 
     CSS::LESSp
     Apache::Test
+    mod_perl2
 
 In addition, an Apache 2.0 or later server with mod_perl version 2.0 or later
 is required.
