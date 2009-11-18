@@ -1,0 +1,102 @@
+package Apache2::Filter::CSS::LESSp;
+
+use 5.008;
+use strict;
+
+use APR::Table;
+use Apache2::Const -compile => qw(OK);
+use Apache2::Filter;
+use Apache2::Log;
+use Apache2::RequestRec;
+
+use CSS::LESSp;
+
+our $VERSION = '0.10';
+
+sub handler :method {
+    my ($class, $f) = @_;
+
+    my $r = $f->r;
+
+    my $ctx = $f->ctx;
+    while ($f->read(my $buffer, 4096)) {
+        $ctx .= $buffer;
+    }
+
+    unless ($f->seen_eos) {
+        $f->ctx($ctx);
+        return Apache2::Const::OK;
+    }
+
+    if ($ctx) {
+        my $css = join '', CSS::LESSp->parse($ctx);
+
+        # fix headers, change content type
+        $r->headers_out->unset('Content-Length');
+        $r->content_type('text/css');
+
+        $f->print($css);
+    }
+
+    return Apache2::Const::OK;
+}
+
+1;
+
+__END__
+
+=head1 NAME
+
+Apache2::Filter::CSS::LESSp - Apache2 LESS to CSS conversion filter
+
+=head1 SYNOPSIS
+
+  <LocationMatch "\.less$">
+      PerlOutputFilterHandler   Apache2::Filter::CSS::LESSp
+  </LocationMatch>
+
+=head1 DESCRIPTION
+
+=head1 SOURCE
+
+You can contribute or fork this project via github:
+
+http://github.com/mschout/apache2-filter-css-lessp
+
+ git clone git://github.com/mschout/apache2-filter-css-lessp.git
+
+=head1 BUGS
+
+Please report any bugs or feature requests to
+bug-apache2-filter-css-lessp@rt.cpan.org, or through the web
+interface at http://rt.cpan.org/
+
+=head1 AUTHOR
+
+Michael Schout E<lt>mschout@cpan.orgE<gt>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2009 Michael Schout.
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of either:
+
+=over 4
+
+=item *
+
+the GNU General Public License as published by the Free Software Foundation;
+either version 1, or (at your option) any later version, or
+
+=item *
+
+the Artistic License version 2.0.
+
+=back
+
+=head1 SEE ALSO
+
+L<CSS::LESSp>, L<Apache2::LESSp>
+
+=cut
