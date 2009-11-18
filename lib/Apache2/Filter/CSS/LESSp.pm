@@ -57,6 +57,23 @@ Apache2::Filter::CSS::LESSp - Apache2 LESS to CSS conversion filter
 
 =head1 DESCRIPTION
 
+Apache2::Filter::CSS::LESSp is a mod_perl2 output filter which converts CSS
+LESS files into CSS on demand using C<CSS::LESSp>.
+
+=head2 Caching
+
+Conversion of LESS files to CSS requires considerably more CPU resources than
+simply serving up static CSS files.  Therefore, it is recommended that you use
+some sort of cache in order to minimize the processing required to convert LESS
+files. An example to cache everything under C</less> using C<mod_cache>:
+
+ # cache root directory
+ CacheRoot /path/to/disk/cache
+ # turn on cache for "/less/" location
+ CacheEnable disk /less/
+
+see the C<mod_cache> documentation for more details.
+
 =head1 SOURCE
 
 You can contribute or fork this project via github:
@@ -97,6 +114,6 @@ the Artistic License version 2.0.
 
 =head1 SEE ALSO
 
-L<CSS::LESSp>, L<Apache2::LESSp>
+L<CSS::LESSp>, L<Apache2>
 
 =cut
