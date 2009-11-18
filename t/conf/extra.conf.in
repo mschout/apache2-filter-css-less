@@ -1,0 +1,9 @@
+PerlSwitches -I@ServerRoot@/../lib
+
+PerlModule Apache2::Filter::CSS::LESSp
+
+<LocationMatch "\.less$">
+    PerlOutputFilterHandler   Apache2::Filter::CSS::LESSp
+</LocationMatch>
+
+# vim: ft=apache
