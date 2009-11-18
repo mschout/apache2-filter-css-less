@@ -11,7 +11,7 @@ use Apache::TestRequest 'GET';
 use Test::More;
 use My::TestHelper qw(cmp_file_ok read_file);
 
-plan tests => 5, need_lwp;
+plan tests => 6, need_lwp;
 
 use_ok('CSS::LESSp') or exit 1;
 
@@ -31,6 +31,7 @@ my $docroot = Apache::Test::vars('documentroot');
     my $r = GET($url);
 
     is $r->code, 200;
+    is $r->content_type, 'text/css';
 
     my $expected = join '', CSS::LESSp->parse(
         read_file("$docroot/stylesheet.less"));

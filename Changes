@@ -1,4 +1,7 @@
 Revision history for Perl extension Apache2::Filter::CSS::LESSp.
 
+CURRENT
+    - add test for content type
+
 0.10  Tue Nov 17 2009
     - initial version
