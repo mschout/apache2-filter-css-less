@@ -2,6 +2,7 @@ Changes
 lib/Apache2/Filter/CSS/LESSp.pm
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 README
 SIGNATURE
 t/compile.t
