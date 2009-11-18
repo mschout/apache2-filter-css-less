@@ -8,6 +8,7 @@ use Apache2::Const -compile => qw(OK);
 use Apache2::Filter;
 use Apache2::Log;
 use Apache2::RequestRec;
+use Apache2::RequestUtil;
 
 use CSS::LESSp;
 
@@ -33,7 +34,7 @@ sub handler :method {
 
         # fix headers, change content type
         $r->headers_out->unset('Content-Length');
-        $r->content_type('text/css');
+        $r->content_type($r->dir_config('LessContentType') || 'text/css');
 
         $f->print($css);
     }
@@ -53,6 +54,9 @@ Apache2::Filter::CSS::LESS - Apache2 LESS to CSS conversion filter
 
   <LocationMatch "\.less$">
       PerlOutputFilterHandler   Apache2::Filter::CSS::LESS
+      # optionally, set the output content type.
+      # default content type is text/css
+      # PerlSetVar LessContentType "text/plain"
   </LocationMatch>
 
 =head1 DESCRIPTION
@@ -73,6 +77,19 @@ files. An example to cache everything under C</less> using C<mod_cache>:
  CacheEnable disk /less/
 
 see the C<mod_cache> documentation for more details.
+
+=head1 CONFIGURATION
+
+The following C<PerlSetVar>'s are recognized:
+
+=over 4
+
+=item B<LessContentType>
+
+Sets the output content type of the filtered CSS.  The default content type
+is C<text/plain>.
+
+=back
 
 =head1 SOURCE
 
