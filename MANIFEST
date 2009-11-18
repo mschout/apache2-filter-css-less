@@ -1,6 +1,14 @@
 Changes
+lib/Apache2/Filter/CSS/LESSp.pm
 Makefile.PL
 MANIFEST
 README
-t/Apache2-Filter-CSS-LESSp.t
-lib/Apache2/Filter/CSS/LESSp.pm
+SIGNATURE
+t/compile.t
+t/conf/extra.conf.in
+t/filter.t
+t/htdocs/stylesheet.less
+t/htdocs/test.html
+t/lib/My/TestHelper.pm
+t/signature.t
+t/TEST.PL
