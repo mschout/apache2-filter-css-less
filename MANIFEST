@@ -4,11 +4,11 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
-SIGNATURE
 t/compile.t
 t/conf/extra.conf.in
 t/filter.t
 t/htdocs/stylesheet.less
+t/htdocs/stylesheet.less.txt
 t/htdocs/test.html
 t/lib/My/TestHelper.pm
 t/signature.t
