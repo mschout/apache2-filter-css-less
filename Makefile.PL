@@ -15,8 +15,8 @@ my $mm_version = $ExtUtils::MakeMaker::VERSION;
 
 WriteMakefile(
     (MM->can('signature_target') ? (SIGN => 1) : ()),
-    NAME              => 'Apache2::Filter::CSS::LESSp',
-    VERSION_FROM      => 'lib/Apache2/Filter/CSS/LESSp.pm',
+    NAME              => 'Apache2::Filter::CSS::LESS',
+    VERSION_FROM      => 'lib/Apache2/Filter/CSS/LESS.pm',
     PREREQ_PM => {
         'mod_perl2'    => '1.9922',   # 2.0 RC5
         'CSS::LESSp'   => 0,
@@ -26,7 +26,7 @@ WriteMakefile(
         FILES => "@{ clean_files() }"
     },
     ($] >= 5.005 ? (
-        ABSTRACT_FROM  => 'lib/Apache2/Filter/CSS/LESSp.pm',
+        ABSTRACT_FROM  => 'lib/Apache2/Filter/CSS/LESS.pm',
         AUTHOR         => 'Michael J Schout <mschout@cpan.org>'
     ) : ()),
     ($mm_version >= 6.48 ? (
@@ -35,8 +35,8 @@ WriteMakefile(
                 directory => [qw(t)],
             },
             resources => {
-                bugtracker  => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Apache2-Filter-CSS-LESSp',
-                repository  => 'http://github.com/mschout/apache2-filter-css-lessp',
+                bugtracker  => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Apache2-Filter-CSS-LESS',
+                repository  => 'http://github.com/mschout/apache2-filter-css-less',
             },
         },
     ) : ()),

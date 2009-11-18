@@ -4,7 +4,7 @@ use strict;
 use warnings FATAL => 'all';
 use lib qw(t/lib lib);
 
-use Apache2::Filter::CSS::LESSp;
+use Apache2::Filter::CSS::LESS;
 use Apache::Test ':withtestmore';
 use Apache::TestUtil;
 use Apache::TestRequest 'GET';

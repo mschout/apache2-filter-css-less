@@ -1,4 +1,4 @@
-# test helpers for Apache2::Filter::CSS::LESSp
+# test helpers for Apache2::Filter::CSS::LESS
 package My::TestHelper;
 
 use 5.008;

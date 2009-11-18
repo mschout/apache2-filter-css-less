@@ -1,4 +1,4 @@
-package Apache2::Filter::CSS::LESSp;
+package Apache2::Filter::CSS::LESS;
 
 use 5.008;
 use strict;
@@ -47,17 +47,17 @@ __END__
 
 =head1 NAME
 
-Apache2::Filter::CSS::LESSp - Apache2 LESS to CSS conversion filter
+Apache2::Filter::CSS::LESS - Apache2 LESS to CSS conversion filter
 
 =head1 SYNOPSIS
 
   <LocationMatch "\.less$">
-      PerlOutputFilterHandler   Apache2::Filter::CSS::LESSp
+      PerlOutputFilterHandler   Apache2::Filter::CSS::LESS
   </LocationMatch>
 
 =head1 DESCRIPTION
 
-Apache2::Filter::CSS::LESSp is a mod_perl2 output filter which converts CSS
+Apache2::Filter::CSS::LESS is a mod_perl2 output filter which converts CSS
 LESS files into CSS on demand using C<CSS::LESSp>.
 
 =head2 Caching
@@ -78,14 +78,14 @@ see the C<mod_cache> documentation for more details.
 
 You can contribute or fork this project via github:
 
-http://github.com/mschout/apache2-filter-css-lessp
+http://github.com/mschout/apache2-filter-css-less
 
- git clone git://github.com/mschout/apache2-filter-css-lessp.git
+ git clone git://github.com/mschout/apache2-filter-css-less.git
 
 =head1 BUGS
 
 Please report any bugs or feature requests to
-bug-apache2-filter-css-lessp@rt.cpan.org, or through the web
+bug-apache2-filter-css-less@rt.cpan.org, or through the web
 interface at http://rt.cpan.org/
 
 =head1 AUTHOR
