@@ -11,6 +11,8 @@ my @scripts = qw(t/TEST);
 Apache::TestMM::filter_args();
 Apache::TestMM::generate_script('t/TEST');
 
+my $mm_version = $ExtUtils::MakeMaker::VERSION;
+
 WriteMakefile(
     (MM->can('signature_target') ? (SIGN => 1) : ()),
     NAME              => 'Apache2::Filter::CSS::LESSp',
@@ -23,9 +25,21 @@ WriteMakefile(
     clean             => {
         FILES => "@{ clean_files() }"
     },
-    ($] >= 5.005 ?
-      (ABSTRACT_FROM  => 'lib/Apache2/Filter/CSS/LESSp.pm',
-       AUTHOR         => 'Michael J Schout <mschout@cpan.org>') : ()),
+    ($] >= 5.005 ? (
+        ABSTRACT_FROM  => 'lib/Apache2/Filter/CSS/LESSp.pm',
+        AUTHOR         => 'Michael J Schout <mschout@cpan.org>'
+    ) : ()),
+    ($mm_version >= 6.48 ? (
+        META_MERGE      => {
+            no_index => {
+                directory => [qw(t)],
+            },
+            resources => {
+                bugtracker  => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Apache2-Filter-CSS-LESSp',
+                repository  => 'http://github.com/mschout/apache2-filter-css-lessp',
+            },
+        },
+    ) : ()),
 );
 
 sub clean_files {
