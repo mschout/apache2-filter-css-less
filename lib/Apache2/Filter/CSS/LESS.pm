@@ -87,7 +87,7 @@ The following C<PerlSetVar>'s are recognized:
 =item B<LessContentType>
 
 Sets the output content type of the filtered CSS.  The default content type
-is C<text/plain>.
+is C<text/css>.
 
 =back
 
