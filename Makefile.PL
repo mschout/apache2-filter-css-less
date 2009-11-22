@@ -2,14 +2,23 @@ require 5.008;
 
 use ExtUtils::MakeMaker;
 
-use lib qw(../blib/lib lib);
+use constant HAVE_APACHE_TEST => eval {
+    require Apache::Test && Apache::Test->VERSION >= 1.22
+};
 
-use Apache::TestMM qw(test clean);    # enable make test
+my @CleanFiles;
 
-my @scripts = qw(t/TEST);
+if (HAVE_APACHE_TEST) {
+    require Apache::TestMM;
+    Apache::TestMM->import(qw(test clean));
 
-Apache::TestMM::filter_args();
-Apache::TestMM::generate_script('t/TEST');
+    push @CleanFiles, 't/TEST';
+    Apache::TestMM::filter_args();
+    Apache::TestMM::generate_script('t/TEST');
+}
+else {
+    print "Skipping Apache::Test setup (Apache::Test 1.22 or later required)\n";
+}
 
 my %conf = (
     NAME         => 'Apache2::Filter::CSS::LESS',
@@ -17,8 +26,9 @@ my %conf = (
     PREREQ_PM    => {
         'mod_perl2'    => '1.9922',    # 2.0 RC5
         'CSS::LESSp'   => 0,
-        'Apache::Test' => 0 },
-    clean => { FILES => "@{ clean_files() }" }
+        'Apache::Test' => 1.22
+    },
+    clean => { FILES => join ' ', @CleanFiles }
 );
 
 if (MM->can('signature_target')) {
@@ -41,7 +51,3 @@ if ($ExtUtils::MakeMaker::VERSION >= 6.48) {
 }
 
 WriteMakefile(%conf);
-
-sub clean_files {
-    return [@scripts];
-}
