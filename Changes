@@ -1,6 +1,6 @@
 Revision history for Perl extension Apache2::Filter::CSS::LESS.
 
-CURRENT
+0.30  Sat Nov 21 2009
     - fixed: docs had wrong default content type.
     - check if Apache::Test is installed, skipping tests that require it if
       necessary.

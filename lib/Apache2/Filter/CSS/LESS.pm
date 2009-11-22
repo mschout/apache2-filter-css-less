@@ -12,7 +12,7 @@ use Apache2::RequestUtil;
 
 use CSS::LESSp;
 
-our $VERSION = '0.20';
+our $VERSION = '0.30';
 
 sub handler :method {
     my ($class, $f) = @_;
